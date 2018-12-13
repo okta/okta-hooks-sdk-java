@@ -1,0 +1,25 @@
+language: java
+jdk:
+- oraclejdk8
+addons:
+  apt:
+    packages:
+    - libxml2-utils
+before_install:
+- source ./src/ci/before_install.sh
+install:
+- 'true'
+script:
+- "./src/ci/build.sh"
+after_success:
+- bash <(curl -s https://codecov.io/bash) -f config-check/target/site/jacoco/jacoco.xml
+deploy:
+- provider: pages
+  skip_cleanup: true
+  github_token: "$GH_API_KEY"
+  local_dir: target/gh-pages
+  email: developers@okta.com
+  name: Travis CI - Auto Doc Build
+  on:
+    branch: master
+    condition: "$TRAVIS_EVENT_TYPE != cron"
