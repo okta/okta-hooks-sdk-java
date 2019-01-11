@@ -24,15 +24,15 @@
         <version>0.1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>okta-hooks-coverage</artifactId>
-    <name>Okta Hooks :: Coverage</name>
-    <description>Project wide code coverage</description>
-    <packaging>pom</packaging>
+    <artifactId>okta-hooks</artifactId>
+    <name>Okta Hooks</name>
 
     <dependencies>
         <dependency>
-            <groupId>com.okta.hooks</groupId>
-            <artifactId>okta-hooks</artifactId>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.4</version>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 
