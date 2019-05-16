@@ -1,3 +1,18 @@
+/*
+ * Copyright 2018-Present Okta, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.okta.hooks.sdk;
 
 import com.okta.hooks.sdk.models.Command;
@@ -9,13 +24,8 @@ import com.okta.hooks.sdk.models.UserRegistrationCommand;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-
-import static com.okta.hooks.sdk.models.OAuth2Command.addIdTokenClaim;
-import static com.okta.hooks.sdk.models.OAuth2Command.addAccessTokenClaim;
-import static com.okta.hooks.sdk.models.UserRegistrationCommand.denyRegistration;
 
 public class Hooks {
 
@@ -50,7 +60,9 @@ public class Hooks {
 
         @Override
         public Builder error(String message) {
-            this.error = new HookError().setErrorCauses(Arrays.asList(
+            this.error = new HookError()
+                    .setErrorSummary(message + "-summary")
+                    .setErrorCauses(Arrays.asList(
                     new HookErrorCause()
                         .setErrorSummary(message)
             ));
@@ -84,18 +96,5 @@ public class Hooks {
                     .setCommands(commands)
                     .setDebugContext(debugContext);
         }
-    }
-
-    public static void main(String[] args) {
-        HookResponse example1 = Hooks.builder()
-                .oauth2(addIdTokenClaim("myClaimKey", "my super cool value"),
-                        addAccessTokenClaim("hello", Arrays.asList("a", "list", "value")))
-                .debugContext(Collections.emptyMap()) // some map value here
-                .build();
-
-        HookResponse example2 = Hooks.builder()
-                .userRegistration(denyRegistration("You shall not pass!"))
-                .error("well, this is an error!")
-                .build();
     }
 }

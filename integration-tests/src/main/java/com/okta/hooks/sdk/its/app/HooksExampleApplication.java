@@ -13,16 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.okta.hooks.sdk.models;
+package com.okta.hooks.sdk.its.app;
 
-import lombok.Data;
-import lombok.experimental.Accessors;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Data
-@Accessors(chain = true)
-public class Command {
+@RestController
+@SpringBootApplication
+public class HooksExampleApplication {
 
-    private final String type;
-    private final Object value;
+    public static void main(String[] args) {
+        SpringApplication.run(HooksExampleApplication.class, args);
+    }
 
+    @GetMapping("/")
+    public String status() {
+        return "OK";
+    }
 }

@@ -13,23 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.okta.hooks.sdk.models;
+package com.okta.hooks.sdk.its.app;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.experimental.Accessors;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
-@Data
-@NoArgsConstructor
-@Accessors(chain = true)
-public class HookResponse {
+public class BaseController {
 
-    private HookError error;
-    private List<Command> commands = new ArrayList<>();
-    private Map<String, Object> debugContext;
+    private final RequestLog requestLog;
+    private final String baseUrl;
 
+    public BaseController(String baseUrl, RequestLog requestLog) {
+        this.baseUrl = baseUrl;
+        this.requestLog = requestLog;
+    }
+
+    void log(String path, Map<String, Object> args) {
+        requestLog.addEntry(baseUrl + "/" +path, args);
+    }
+
+    void log(String path, String key1, Object value1) {
+        Map<String, Object> args = new LinkedHashMap<>();
+        args.put(key1, value1);
+        log(path, args);
+    }
 }
