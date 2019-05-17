@@ -94,6 +94,8 @@ String result = Hooks.builder()
 
 ### OAuth2/OIDC Tokens Hooks
 
+Okta's [Token Inline Hook](https://developer.okta.com/use_cases/inline_hooks/token_hook/token_hook) docs
+
 #### Error
 
 ```java
@@ -126,6 +128,8 @@ Hooks.builder()
 ```
 
 ### User Registration Hooks
+
+Okta's [Registration Inline Hook](https://developer.okta.com/use_cases/inline_hooks/registration_hook/registration_hook) docs
 
 #### Error
 
@@ -162,6 +166,8 @@ Hooks.builder()
 
 ### Import Users Hook
 
+Okta's [Import Inline Hooks](https://developer.okta.com/use_cases/inline_hooks/import_hook/import_hook) docs
+
 #### Add User Profile Property
 
 ```java
@@ -188,6 +194,8 @@ Hooks.builder()
 ```
 
 ### SAML Assertion Hooks
+
+Okta's [SAML Assertion Inline Hooks](https://developer.okta.com/use_cases/inline_hooks/saml_hook/saml_hook) docs
 
 #### Replace Attribute
 
