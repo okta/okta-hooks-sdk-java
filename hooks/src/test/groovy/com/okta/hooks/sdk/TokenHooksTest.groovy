@@ -17,8 +17,8 @@ package com.okta.hooks.sdk
 
 import org.testng.annotations.Test
 
-import static com.okta.hooks.sdk.models.OAuth2Command.addAccessTokenClaims
-import static com.okta.hooks.sdk.models.OAuth2Command.addIdTokenClaims
+import static com.okta.hooks.sdk.commands.OAuth2Command.addAccessTokenClaims
+import static com.okta.hooks.sdk.commands.OAuth2Command.addIdTokenClaims
 import static org.hamcrest.MatcherAssert.assertThat
 import static org.hamcrest.Matchers.is
 

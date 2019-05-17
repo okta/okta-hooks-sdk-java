@@ -13,17 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.okta.hooks.sdk.models;
+package com.okta.hooks.sdk.commands;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import java.util.List;
-
 @Data
 @Accessors(chain = true)
-public class HookError {
+public class Command {
 
-    private String errorSummary;
-    private List<HookErrorCause> errorCauses;
+    private final String type;
+    private final Object value;
+
 }

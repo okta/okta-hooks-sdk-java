@@ -15,11 +15,11 @@
  */
 package com.okta.hooks.sdk
 
-import com.okta.hooks.sdk.models.SamlAssertionCommand
+import com.okta.hooks.sdk.commands.SamlAssertionCommand
 import org.testng.annotations.Test
 
-import static com.okta.hooks.sdk.models.SamlAssertionCommand.add
-import static com.okta.hooks.sdk.models.SamlAssertionCommand.replace
+import static com.okta.hooks.sdk.commands.SamlAssertionCommand.add
+import static com.okta.hooks.sdk.commands.SamlAssertionCommand.replace
 import static org.hamcrest.MatcherAssert.assertThat
 import static org.hamcrest.Matchers.is
 

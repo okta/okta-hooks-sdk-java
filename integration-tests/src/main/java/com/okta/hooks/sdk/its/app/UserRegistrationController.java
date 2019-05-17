@@ -16,19 +16,17 @@
 package com.okta.hooks.sdk.its.app;
 
 import com.okta.hooks.sdk.Hooks;
-import com.okta.hooks.sdk.models.HookResponse;
+import com.okta.hooks.sdk.commands.HookResponse;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 
-import static com.okta.hooks.sdk.models.UserRegistrationCommand.addProfileProperties;
-import static com.okta.hooks.sdk.models.UserRegistrationCommand.allowRegistration;
-import static com.okta.hooks.sdk.models.UserRegistrationCommand.denyRegistration;
+import static com.okta.hooks.sdk.commands.UserRegistrationCommand.addProfileProperties;
+import static com.okta.hooks.sdk.commands.UserRegistrationCommand.allowRegistration;
+import static com.okta.hooks.sdk.commands.UserRegistrationCommand.denyRegistration;
 
 @RestController
 @RequestMapping("user-reg/")

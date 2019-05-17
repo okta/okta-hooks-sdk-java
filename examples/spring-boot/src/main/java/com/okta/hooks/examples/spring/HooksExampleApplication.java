@@ -16,20 +16,19 @@
 package com.okta.hooks.examples.spring;
 
 import com.okta.hooks.sdk.Hooks;
-import com.okta.hooks.sdk.models.HookResponse;
+import com.okta.hooks.sdk.commands.HookResponse;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.util.Arrays;
 
-import static com.okta.hooks.sdk.models.OAuth2Command.addAccessTokenClaim;
-import static com.okta.hooks.sdk.models.OAuth2Command.addIdTokenClaim;
-import static com.okta.hooks.sdk.models.UserRegistrationCommand.denyRegistration;
+import static com.okta.hooks.sdk.commands.OAuth2Command.addAccessTokenClaim;
+import static com.okta.hooks.sdk.commands.OAuth2Command.addIdTokenClaim;
+import static com.okta.hooks.sdk.commands.UserRegistrationCommand.denyRegistration;
 
 @RestController
 @SpringBootApplication

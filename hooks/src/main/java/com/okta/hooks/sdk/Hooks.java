@@ -15,14 +15,14 @@
  */
 package com.okta.hooks.sdk;
 
-import com.okta.hooks.sdk.models.Command;
-import com.okta.hooks.sdk.models.HookError;
-import com.okta.hooks.sdk.models.HookErrorCause;
-import com.okta.hooks.sdk.models.HookResponse;
-import com.okta.hooks.sdk.models.OAuth2Command;
-import com.okta.hooks.sdk.models.SamlAssertionCommand;
-import com.okta.hooks.sdk.models.UserImportCommand;
-import com.okta.hooks.sdk.models.UserRegistrationCommand;
+import com.okta.hooks.sdk.commands.Command;
+import com.okta.hooks.sdk.commands.HookError;
+import com.okta.hooks.sdk.commands.HookErrorCause;
+import com.okta.hooks.sdk.commands.HookResponse;
+import com.okta.hooks.sdk.commands.OAuth2Command;
+import com.okta.hooks.sdk.commands.SamlAssertionCommand;
+import com.okta.hooks.sdk.commands.UserImportCommand;
+import com.okta.hooks.sdk.commands.UserRegistrationCommand;
 
 import java.util.ArrayList;
 import java.util.Arrays;

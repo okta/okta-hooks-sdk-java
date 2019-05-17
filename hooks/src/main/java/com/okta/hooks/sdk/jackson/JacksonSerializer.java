@@ -21,7 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.auto.service.AutoService;
 import com.okta.hooks.sdk.HookResponseSerializer;
 import com.okta.hooks.sdk.SerializationException;
-import com.okta.hooks.sdk.models.HookResponse;
+import com.okta.hooks.sdk.commands.HookResponse;
 
 @AutoService(HookResponseSerializer.class)
 public class JacksonSerializer implements HookResponseSerializer {

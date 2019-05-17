@@ -15,7 +15,7 @@
  */
 package com.okta.hooks.sdk;
 
-import com.okta.hooks.sdk.models.HookResponse;
+import com.okta.hooks.sdk.commands.HookResponse;
 
 public interface HookResponseSerializer {
 

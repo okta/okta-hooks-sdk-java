@@ -16,7 +16,7 @@
 package com.okta.hooks.sdk.its.app;
 
 import com.okta.hooks.sdk.Hooks;
-import com.okta.hooks.sdk.models.HookResponse;
+import com.okta.hooks.sdk.commands.HookResponse;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,10 +26,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.okta.hooks.sdk.models.OAuth2Command.addAccessTokenClaim;
-import static com.okta.hooks.sdk.models.OAuth2Command.addAccessTokenClaims;
-import static com.okta.hooks.sdk.models.OAuth2Command.addIdTokenClaim;
-import static com.okta.hooks.sdk.models.OAuth2Command.addIdTokenClaims;
+import static com.okta.hooks.sdk.commands.OAuth2Command.addAccessTokenClaim;
+import static com.okta.hooks.sdk.commands.OAuth2Command.addAccessTokenClaims;
+import static com.okta.hooks.sdk.commands.OAuth2Command.addIdTokenClaim;
+import static com.okta.hooks.sdk.commands.OAuth2Command.addIdTokenClaims;
 
 @RestController
 @RequestMapping("oauth-token/")

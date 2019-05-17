@@ -17,9 +17,9 @@ package com.okta.hooks.sdk
 
 import org.testng.annotations.Test
 
-import static com.okta.hooks.sdk.models.UserRegistrationCommand.addProfileProperties
-import static com.okta.hooks.sdk.models.UserRegistrationCommand.allowRegistration
-import static com.okta.hooks.sdk.models.UserRegistrationCommand.denyRegistration
+import static com.okta.hooks.sdk.commands.UserRegistrationCommand.addProfileProperties
+import static com.okta.hooks.sdk.commands.UserRegistrationCommand.allowRegistration
+import static com.okta.hooks.sdk.commands.UserRegistrationCommand.denyRegistration
 import static org.hamcrest.MatcherAssert.assertThat
 import static org.hamcrest.Matchers.is
 

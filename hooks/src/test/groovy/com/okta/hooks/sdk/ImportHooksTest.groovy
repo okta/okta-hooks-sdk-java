@@ -17,11 +17,11 @@ package com.okta.hooks.sdk
 
 import org.testng.annotations.Test
 
-import static com.okta.hooks.sdk.models.UserImportCommand.createUser
-import static com.okta.hooks.sdk.models.UserImportCommand.linkUser
+import static com.okta.hooks.sdk.commands.UserImportCommand.createUser
+import static com.okta.hooks.sdk.commands.UserImportCommand.linkUser
 import static org.hamcrest.MatcherAssert.assertThat
 import static org.hamcrest.Matchers.is
-import static com.okta.hooks.sdk.models.UserImportCommand.addProfileProperties
+import static com.okta.hooks.sdk.commands.UserImportCommand.addProfileProperties
 
 class ImportHooksTest implements HooksSupport {
 
