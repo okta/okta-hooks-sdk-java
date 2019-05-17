@@ -39,6 +39,4 @@ public class UserRegistrationCommand extends Command {
     public static UserRegistrationCommand addProfileProperties(Map<String, Object> properties) {
         return new UserRegistrationCommand("com.okta.user.profile.update", properties);
     }
-
-
 }

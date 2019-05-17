@@ -20,14 +20,20 @@ import com.okta.hooks.sdk.models.HookError;
 import com.okta.hooks.sdk.models.HookErrorCause;
 import com.okta.hooks.sdk.models.HookResponse;
 import com.okta.hooks.sdk.models.OAuth2Command;
+import com.okta.hooks.sdk.models.SamlAssertionCommand;
+import com.okta.hooks.sdk.models.UserImportCommand;
 import com.okta.hooks.sdk.models.UserRegistrationCommand;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.ServiceLoader;
 
 public class Hooks {
+
+    private static final HookResponseSerializer SERIALIZER = loadSerializer();
 
     private Hooks() {}
 
@@ -43,9 +49,15 @@ public class Hooks {
 
         Builder error(String message);
 
+        Builder errorCause(String message);
+
         Builder oauth2(OAuth2Command... commands);
 
         Builder userRegistration(UserRegistrationCommand... commands);
+
+        Builder userImport(UserImportCommand... commands);
+
+        Builder samlAssertion(SamlAssertionCommand... commands);
 
         Builder debugContext(Map<String, Object> data);
 
@@ -54,33 +66,46 @@ public class Hooks {
 
     private static class DefaultBuilder implements Builder {
 
-        private List<Command> commands = new ArrayList<>();
+        private List<Command> commands;
         private Map<String, Object> debugContext;
         private HookError error;
 
         @Override
         public Builder error(String message) {
-            this.error = new HookError()
-                    .setErrorSummary(message + "-summary")
-                    .setErrorCauses(Arrays.asList(
-                    new HookErrorCause()
-                        .setErrorSummary(message)
-            ));
+            this.error = getOrCreateError(false)
+                    .setErrorSummary(message);
+            return this;
+        }
+
+        @Override
+        public Builder errorCause(String message) {
+
+            HookErrorCause cause = new HookErrorCause()
+                    .setErrorSummary(message);
+
+            error = getOrCreateError(true);
+            error.getErrorCauses().add(cause);
             return this;
         }
 
         @Override
         public Builder oauth2(OAuth2Command... commands) {
-            // TODO assert not null, maybe check if list already has commands?
-            this.commands.addAll(Arrays.asList(commands));
-            return this;
+            return addCommands(commands);
         }
 
         @Override
         public Builder userRegistration(UserRegistrationCommand... commands) {
-            // TODO assert not null, maybe check if list already has commands?
-            this.commands.addAll(Arrays.asList(commands));
-            return this;
+            return addCommands(commands);
+        }
+
+        @Override
+        public Builder userImport(UserImportCommand... commands) {
+            return addCommands(commands);
+        }
+
+        @Override
+        public Builder samlAssertion(SamlAssertionCommand... commands) {
+            return addCommands(commands);
         }
 
         @Override
@@ -96,5 +121,40 @@ public class Hooks {
                     .setCommands(commands)
                     .setDebugContext(debugContext);
         }
+
+        @Override
+        public String toString() {
+            return SERIALIZER.serialize(build());
+        }
+
+        private HookError getOrCreateError(boolean initCauses) {
+
+            HookError hookError = error != null ? error : new HookError();
+
+            if (initCauses && hookError.getErrorCauses() == null) {
+                hookError.setErrorCauses(new ArrayList<>());
+            }
+            return hookError;
+        }
+
+        private Builder addCommands(Command... commands) {
+            ensureCommands().addAll(Arrays.asList(commands));
+            return this;
+        }
+
+        private List<Command> ensureCommands() {
+            if (commands == null) {
+                commands = new ArrayList<>();
+            }
+            return commands;
+        }
+    }
+
+    private static HookResponseSerializer loadSerializer() {
+        Iterator<HookResponseSerializer> iter = ServiceLoader.load(HookResponseSerializer.class).iterator();
+        if (!iter.hasNext()) {
+            throw new IllegalStateException("Could not load HookResponseSerializer from ServiceLoader");
+        }
+        return iter.next();
     }
 }

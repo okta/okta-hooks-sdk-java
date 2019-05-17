@@ -18,7 +18,6 @@ package com.okta.hooks.sdk.models;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import java.util.Collections;
 import java.util.List;
 
 @Data
@@ -26,6 +25,5 @@ import java.util.List;
 public class HookError {
 
     private String errorSummary;
-    private List<HookErrorCause> errorCauses = Collections.emptyList();
-
+    private List<HookErrorCause> errorCauses;
 }

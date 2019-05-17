@@ -28,7 +28,7 @@ import static org.hamcrest.Matchers.is
 @Test(singleThreaded = true)
 class RegistrationInlineHookIT extends ITSupport {
 
-    ExtensibleResource registrationPolicy
+    private ExtensibleResource registrationPolicy
 
     RegistrationInlineHookIT() {
         super("user-reg", "com.okta.user.pre-registration")

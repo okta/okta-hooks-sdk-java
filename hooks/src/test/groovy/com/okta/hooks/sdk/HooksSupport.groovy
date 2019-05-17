@@ -13,22 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.okta.hooks.sdk.models;
+package com.okta.hooks.sdk
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.experimental.Accessors;
+trait HooksSupport {
 
-import java.util.List;
-import java.util.Map;
-
-@Data
-@NoArgsConstructor
-@Accessors(chain = true)
-public class HookResponse {
-
-    private HookError error;
-    private List<Command> commands;
-    private Map<String, Object> debugContext;
-
+    String expected(String jsonString) {
+        return jsonString.replaceAll("\\s+", "")
+    }
 }

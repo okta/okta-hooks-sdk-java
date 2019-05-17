@@ -43,7 +43,7 @@ public class UserRegistrationController extends BaseController {
         log("error", "payload", request);
 
         return Hooks.builder()
-                .error("expected test error")
+                .errorCause("expected test error")
                 .build();
     }
 
