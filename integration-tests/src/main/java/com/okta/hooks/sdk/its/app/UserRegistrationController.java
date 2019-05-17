@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -72,11 +73,9 @@ public class UserRegistrationController extends BaseController {
 
         log("update-profile", "payload", request);
 
-        Map<String, Object> addedProfileProps = new HashMap<>();
-        addedProfileProps.put("viaHooksTest", "expected-test-value");
-
         return Hooks.builder()
-                .userRegistration(addProfileProperties(addedProfileProps))
+                .userRegistration(addProfileProperties(
+                        Collections.singletonMap("viaHooksTest", "expected-test-value")))
                 .build();
     }
 }

@@ -29,36 +29,30 @@ import java.util.Arrays;
 
 import static com.okta.hooks.sdk.models.OAuth2Command.addAccessTokenClaim;
 import static com.okta.hooks.sdk.models.OAuth2Command.addIdTokenClaim;
+import static com.okta.hooks.sdk.models.UserRegistrationCommand.denyRegistration;
 
 @RestController
 @SpringBootApplication
 public class HooksExampleApplication {
-
-//    @Autowired
-//    private final ObjectMapper objectMapper;
 
     public static void main(String[] args) {
         SpringApplication.run(HooksExampleApplication.class, args);
     }
 
     @PostMapping("oauth2")
-    public @ResponseBody HookResponse oauth2(@RequestBody String request) throws IOException {
+    public  HookResponse oauth2(@RequestBody String request) throws IOException {
 
         return Hooks.builder()
-                .error("NO NO NO")
                 .oauth2(addIdTokenClaim("myClaimKey", "my super cool value"),
                         addAccessTokenClaim("hello", Arrays.asList("a", "list", "value")))
                 .build();
     }
 
     @PostMapping("user-reg")
-    public @ResponseBody HookResponse userReg(@RequestBody String request) throws IOException {
-
-        System.out.println(request);
+    public HookResponse userReg(@RequestBody String request) throws IOException {
 
         return Hooks.builder()
-                .error("<a href=\"#bad\">this is bad</a>")
-//                .userRegistration(denyRegistration("No soup for you!"))
+                .userRegistration(denyRegistration())
                 .build();
     }
 }

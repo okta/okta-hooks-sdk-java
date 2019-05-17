@@ -119,7 +119,7 @@ class SamlHooksTest implements HooksSupport {
                     .setAttributeValues([
                         new SamlAssertionCommand.SamlAttributeValue()
                             .setAttributes(["xsi:type": "xs:string"])
-                            .setValue("barer")])))
+                            .setValue("bearer")])))
             .samlAssertion(replace("/authentication/sessionIndex", "definitelyARealSession"))
 
         def expectedToString = expected """
@@ -152,7 +152,7 @@ class SamlHooksTest implements HooksSupport {
                         "attributes": {
                           "xsi:type": "xs:string"
                         },
-                        "value": "barer"
+                        "value": "bearer"
                       }
                     ]
                   }
