@@ -1,18 +1,27 @@
 language: java
+
 jdk:
 - oraclejdk8
+- openjdk11
+
 addons:
   apt:
     packages:
     - libxml2-utils
+
 before_install:
 - source ./src/ci/before_install.sh
+
+# skip the Travis-CI install phase because Maven handles that directly
 install:
 - 'true'
+
 script:
 - "./src/ci/build.sh"
+
 after_success:
-- bash <(curl -s https://codecov.io/bash) -f config-check/target/site/jacoco/jacoco.xml
+- bash <(curl -s https://codecov.io/bash) -f coverage/target/site/jacoco-aggregate/jacoco.xml
+
 deploy:
 - provider: pages
   skip_cleanup: true
@@ -21,5 +30,6 @@ deploy:
   email: developers@okta.com
   name: Travis CI - Auto Doc Build
   on:
+    jdk: oraclejdk8
     branch: master
     condition: "$TRAVIS_EVENT_TYPE != cron"
