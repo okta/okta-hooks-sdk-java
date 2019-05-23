@@ -84,7 +84,7 @@ public HookResponse userReg(@RequestBody String request) throws IOException {
 }
 ```
 
-Or serialize you could serialize directly, but calling `Builder.toString()`:
+Or serialize you could serialize directly, but calling the `toString()` method on the builder instance:
 
 ```java
 String result = Hooks.builder()
@@ -215,6 +215,17 @@ Hooks.builder()
             new SamlAssertionCommand.SamlAttributeValue()
                 .setAttributes(Collections.singletonMap("xsi:type": "xs:string"))
                 .setValue("bearer")))))
+    .build();
+```
+
+## Add Debug Information
+
+Additional debug information can be added to any hook response, these additional fields will be available via [Okta's System Log](https://developer.okta.com/docs/api/resources/system_log/), and as such should NOT contain any secrets.
+
+```java
+Hooks.builder()
+    .errorCause("An Error")
+    .debugContext(Collections.singletonMap("key", "value"))
     .build();
 ```
 

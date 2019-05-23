@@ -18,6 +18,6 @@ package com.okta.hooks.sdk
 trait HooksSupport {
 
     String expected(String jsonString) {
-        return jsonString.replaceAll("\\s+", "")
+        return jsonString.replaceAll("\\s+(?=([^\"]*\"[^\"]*\")*[^\"]*\$)", "")
     }
 }

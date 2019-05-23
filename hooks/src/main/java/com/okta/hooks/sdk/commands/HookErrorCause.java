@@ -24,8 +24,8 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class HookErrorCause {
     private String errorSummary;
-//    private String reason;
-//    private String  locationType;
-//    private String location;
-//    private String domain;
+    private String reason;
+    private String locationType;
+    private String location;
+    private String domain;
 }

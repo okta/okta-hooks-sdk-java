@@ -15,6 +15,7 @@
  */
 package com.okta.hooks.sdk
 
+import com.okta.hooks.sdk.commands.HookErrorCause
 import org.testng.annotations.Test
 
 import static com.okta.hooks.sdk.commands.UserRegistrationCommand.addProfileProperties
@@ -32,6 +33,59 @@ class UserRegHooksTest implements HooksSupport {
             .errorCause("test-error")
 
         def expectedToString = expected"""{"error": {"errorCauses": [{ "errorSummary": "test-error" }]}}"""
+        assertThat builder.toString(), is(expectedToString)
+    }
+
+    @Test
+    void errorWithDebugContext() {
+
+        def builder = Hooks.builder()
+            .errorCause("test-error")
+            .debugContext(["foo": "bar", "one": "two"])
+
+        def expectedToString = expected"""{"error": {"errorCauses": [{ "errorSummary": "test-error" }]}, "debugContext": {"foo": "bar", "one": "two"}}"""
+        assertThat builder.toString(), is(expectedToString)
+    }
+
+    @Test
+    void complexError() {
+
+        def builder = Hooks.builder()
+            .error("Errors were found in the user profile")
+            .errorCause(new HookErrorCause()
+                .setErrorSummary("You specified an invalid email domain")
+                .setReason("INVALID_EMAIL_DOMAIN")
+                .setLocationType("body")
+                .setLocation("data.userProfile.login")
+                .setDomain("end-user"))
+            .errorCause(new HookErrorCause()
+                .setErrorSummary("You failed this test")
+                .setReason("EXPECTED_TEST_ERROR")
+                .setLocationType("arm")
+                .setLocation("data.fake.location")
+                .setDomain("foobar"))
+
+        def expectedToString = expected """
+        {
+           "error":{
+              "errorSummary":"Errors were found in the user profile",
+              "errorCauses":[
+                 { "errorSummary":"You specified an invalid email domain",
+                    "reason":"INVALID_EMAIL_DOMAIN",
+                    "locationType":"body",
+                    "location":"data.userProfile.login",
+                    "domain":"end-user"
+                 },
+                 { "errorSummary":"You failed this test",
+                    "reason":"EXPECTED_TEST_ERROR",
+                    "locationType":"arm",
+                    "location":"data.fake.location",
+                    "domain":"foobar"
+                 }
+              ]
+           }
+        }
+        """
         assertThat builder.toString(), is(expectedToString)
     }
 

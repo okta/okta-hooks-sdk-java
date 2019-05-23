@@ -51,6 +51,8 @@ public class Hooks {
 
         Builder errorCause(String message);
 
+        Builder errorCause(HookErrorCause cause);
+
         Builder oauth2(OAuth2Command... commands);
 
         Builder userRegistration(UserRegistrationCommand... commands);
@@ -79,10 +81,12 @@ public class Hooks {
 
         @Override
         public Builder errorCause(String message) {
+            return errorCause(new HookErrorCause()
+                    .setErrorSummary(message));
+        }
 
-            HookErrorCause cause = new HookErrorCause()
-                    .setErrorSummary(message);
-
+        @Override
+        public Builder errorCause(HookErrorCause cause) {
             error = getOrCreateError(true);
             error.getErrorCauses().add(cause);
             return this;
