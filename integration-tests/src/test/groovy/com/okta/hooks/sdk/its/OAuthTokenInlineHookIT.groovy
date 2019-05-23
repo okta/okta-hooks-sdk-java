@@ -188,7 +188,7 @@ class OAuthTokenInlineHookIT extends ITSupport {
             .formParam("scope", "openid profile email")
         .when()
             .post("${issuer}/v1/token")
-        .then().log().everything()
+        .then()
             .statusCode(expectedStatus)
             .extract()
     }

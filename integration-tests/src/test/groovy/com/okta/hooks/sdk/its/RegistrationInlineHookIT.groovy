@@ -172,7 +172,7 @@ class RegistrationInlineHookIT extends ITSupport {
             .post("/api/internal/v1/registration", ExtensibleResource)
     }
 
-    void updateRegistrationHook(String hookId) {
+    private void updateRegistrationHook(String hookId) {
 
         registrationPolicy.inlineHookId = hookId
         getClient().http()

@@ -85,7 +85,6 @@ class ITSupport {
         toBeDeleted.add(deletable)
     }
 
-
     @AfterMethod
     void clean() {
         toBeDeleted.reverse().each { deletable ->
@@ -129,7 +128,6 @@ class ITSupport {
 
         return user
     }
-
 
     void startTunnel() {
 
