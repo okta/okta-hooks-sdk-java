@@ -34,7 +34,7 @@
     <inceptionYear>2018</inceptionYear>
 
     <properties>
-        <github.slug>okta/okta-extensibility-sdk-java</github.slug>
+        <github.slug>okta/okta-hooks-sdk-java</github.slug>
         <jackson.version>2.9.9</jackson.version>
         <spring-boot.version>2.1.5.RELEASE</spring-boot.version>
     </properties>
