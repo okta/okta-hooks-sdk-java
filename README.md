@@ -84,7 +84,7 @@ public HookResponse userReg(@RequestBody String request) throws IOException {
 }
 ```
 
-Or serialize you could serialize directly, but calling the `toString()` method on the builder instance:
+Or you could serialize directly, but calling the `toString()` method on the builder instance:
 
 ```java
 String result = Hooks.builder()
