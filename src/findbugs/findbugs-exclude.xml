@@ -15,4 +15,16 @@
   -->
 <FindBugsFilter>
 
+    <!-- Allow for any endpoints for examples -->
+    <Match>
+        <Package name="~com\.okta\.hooks\.examples\..*"/>
+        <Bug pattern="SPRING_ENDPOINT" />
+    </Match>
+
+    <!-- Allow for any endpoints for tests -->
+    <Match>
+        <Package name="~com\.okta\.hooks\.sdk\.its\..*"/>
+        <Bug pattern="SPRING_ENDPOINT" />
+    </Match>
+
 </FindBugsFilter>

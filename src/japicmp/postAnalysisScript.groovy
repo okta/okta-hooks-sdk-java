@@ -13,8 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import static japicmp.model.JApiCompatibilityChange.*
+
 import static japicmp.model.JApiChangeStatus.*
+import static japicmp.model.JApiCompatibilityChange.*
 
 println("japicmp report, changes from previous release:")
 def it = jApiClasses.iterator()
