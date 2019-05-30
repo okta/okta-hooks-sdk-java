@@ -44,7 +44,7 @@ For Apache Maven:
 
 ``` xml
 <dependency>
-    <groupId>com.okta.hooks</groupId>
+    <groupId>com.okta.hooks.sdk</groupId>
     <artifactId>okta-hooks</artifactId>
     <version>${okta.version}</version>
 </dependency>
@@ -53,7 +53,7 @@ For Apache Maven:
 For Gradle:
 
 ```groovy
-compile "com.okta.hooks:okta-hooks:${okta.version}"
+compile "com.okta.hooks.sdk:okta-hooks:${okta.version}"
 ```
 
 ### SNAPSHOT Dependencies
