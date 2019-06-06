@@ -68,14 +68,14 @@ https://oss.sonatype.org/content/repositories/snapshots/
 
 These examples will help you understand how to use this library. You can also browse the full [API reference documentation][javadocs].
 
-This library currently supports building response objects which your application can send back Okta.
+This library helps you build the response objects for an Okta Inline Hook. Before you use this library you will need to setup a route or controller that will listen for the incoming hook from Okta.
 
 Serialization can be handled within the library or through another framework.
 
-For example a simple Spring controller might look like:
+For example a simple Spring Controller might look like:
 
 ```java
-@PostMapping("user-reg")
+@PostMapping("/user-reg")
 public HookResponse userReg(@RequestBody String request) throws IOException {
 
     return Hooks.builder()
@@ -86,11 +86,17 @@ public HookResponse userReg(@RequestBody String request) throws IOException {
 
 Or you could serialize directly, but calling the `toString()` method on the builder instance:
 
+[//]: # (NOTE: code snippets in this README are updated automatically via a Maven plugin by running: mvn okta-code-snippet:snip)
+
+[//]: # (method: serializeToString)
 ```java
 String result = Hooks.builder()
             .userRegistration(denyRegistration())
             .toString();
 ```
+[//]: # (end: serializeToString)
+
+These examples below make use of static imported methods, to see the full example with package declarations checkout [ReadmeSnippets](https://github.com/okta/okta-hooks-sdk-java/blob/master/examples/spring-boot/src/main/java/com/okta/hooks/examples/spring/ReadmeSnippets.java).  
 
 ### OAuth2/OIDC Tokens Hooks
 
@@ -98,34 +104,42 @@ Okta's [Token Inline Hook](https://developer.okta.com/use_cases/inline_hooks/tok
 
 #### Error
 
+[//]: # (method: error)
 ```java
 Hooks.builder()
     .error("Some Error")
     .build();
 ```
+[//]: # (end: error)
 
 #### Noop Success
 
+[//]: # (method: noop)
 ```java
 Hooks.builder()
     .build();
 ```
+[//]: # (end: noop)
 
 #### Add Claim to Access Token
 
+[//]: # (method: oAuthAddAccessTokenClaim)
 ```java
 Hooks.builder()
     .oauth2(addAccessTokenClaim("aClaim", "test-value"))
     .build();
 ```
+[//]: # (end: oAuthAddAccessTokenClaim)
 
 #### Add Claim to ID Token
 
+[//]: # (method: oAuthAddIdTokenClaim)
 ```java
 Hooks.builder()
     .oauth2(addIdTokenClaim("iClaim", "another-value"))
     .build();
 ```
+[//]: # (end: oAuthAddIdTokenClaim)
 
 ### User Registration Hooks
 
@@ -133,36 +147,44 @@ Okta's [Registration Inline Hook](https://developer.okta.com/use_cases/inline_ho
 
 #### Error
 
+[//]: # (method: errorCause)
 ```java
 Hooks.builder()
     .errorCause("An Error")
     .build();
 ```
+[//]: # (end: errorCause)
 
 #### Deny Registration
 
+[//]: # (method: userRegDenyRegistration)
 ```java
 Hooks.builder()
     .userRegistration(denyRegistration())
     .build();
 ```
+[//]: # (end: userRegDenyRegistration)
 
 #### Allow Registration
 
+[//]: # (method: userRegAllowRegistration)
 ```java
 Hooks.builder()
     .userRegistration(allowRegistration())
     .build();
 ```
+[//]: # (end: userRegAllowRegistration)
 
 #### Add User Profile Property
 
+[//]: # (method: userRegProfileProperty)
 ```java
 Hooks.builder()
-    .userRegistration(addProfileProperties(
+    .userRegistration(UserRegistrationCommand.addProfileProperties(
             Collections.singletonMap("someKey", "a-value")))
     .build();
 ```
+[//]: # (end: userRegProfileProperty)
 
 ### Import Users Hook
 
@@ -170,28 +192,34 @@ Okta's [Import Inline Hooks](https://developer.okta.com/use_cases/inline_hooks/i
 
 #### Add User Profile Property
 
+[//]: # (method: userImportProfileProperty)
 ```java
 Hooks.builder()
-    .userImport(addProfileProperties(
+    .userImport(UserImportCommand.addProfileProperties(
             Collections.singletonMap("someKey", "a-value")))
     .build();
 ```
+[//]: # (end: userImportProfileProperty)
 
 #### Create User
 
+[//]: # (method: userImportCreateUser)
 ```java
 Hooks.builder()
     .userImport(createUser())
     .build();
 ```
+[//]: # (end: userImportCreateUser)
 
 #### Link User
 
+[//]: # (method: userImportLinkUser)
 ```java
 Hooks.builder()
-    .userImport(linkUser("oktaUserId")
+    .userImport(linkUser("oktaUserId"))
     .build();
 ```
+[//]: # (end: userImportLinkUser)
 
 ### SAML Assertion Hooks
 
@@ -199,35 +227,41 @@ Okta's [SAML Assertion Inline Hooks](https://developer.okta.com/use_cases/inline
 
 #### Replace Attribute
 
+[//]: # (method: samlReplaceAssertion)
 ```java
 Hooks.builder()
     .samlAssertion(replace("/claims/array/attributeValues/1/value", "replacementValue"))
     .build();
 ```
+[//]: # (end: samlReplaceAssertion)
 
 #### Add Attribute
 
+[//]: # (method: samlAddAssertion)
 ```java
- Hooks.builder()
+Hooks.builder()
     .samlAssertion(add("/claims/foo", new SamlAssertionCommand.SamlAttribute()
         .setAttributes(Collections.singletonMap("NameFormat", "urn:oasis:names:tc:SAML:2.0:attrname-format:basic"))
         .setAttributeValues(Collections.singletonList(
             new SamlAssertionCommand.SamlAttributeValue()
-                .setAttributes(Collections.singletonMap("xsi:type": "xs:string"))
+                .setAttributes(Collections.singletonMap("xsi:type", "xs:string"))
                 .setValue("bearer")))))
     .build();
 ```
+[//]: # (end: samlAddAssertion)
 
 ## Add Debug Information
 
 Additional debug information can be added to any hook response, these additional fields will be available via [Okta's System Log](https://developer.okta.com/docs/api/resources/system_log/), and as such should NOT contain any secrets.
 
+[//]: # (method: debugInfo)
 ```java
 Hooks.builder()
     .errorCause("An Error")
     .debugContext(Collections.singletonMap("key", "value"))
     .build();
 ```
+[//]: # (end: debugInfo)
 
 ## Building the SDK
  

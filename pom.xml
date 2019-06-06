@@ -134,6 +134,13 @@
                         </parameter>
                     </configuration>
                 </plugin>
+                <plugin>
+                    <groupId>com.okta</groupId>
+                    <artifactId>okta-code-snippet-maven-plugin</artifactId>
+                    <configuration>
+                        <sourceFile>examples/spring-boot/src/main/java/com/okta/hooks/examples/spring/ReadmeSnippets.java</sourceFile>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
