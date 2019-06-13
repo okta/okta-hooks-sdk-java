@@ -27,4 +27,9 @@
         <Bug pattern="SPRING_ENDPOINT" />
     </Match>
 
+    <!-- Ignore snippets, they are structured to be documentation, and are code to ensure they compile -->
+    <Match>
+        <Class name="com.okta.hooks.examples.spring.ReadmeSnippets" />]
+    </Match>
+
 </FindBugsFilter>

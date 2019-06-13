@@ -38,7 +38,7 @@ public class HooksExampleApplication {
         SpringApplication.run(HooksExampleApplication.class, args);
     }
 
-    @PostMapping("oauth2")
+    @PostMapping("/oauth2")
     public  HookResponse oauth2(@RequestBody String request) throws IOException {
 
         return Hooks.builder()
@@ -47,7 +47,7 @@ public class HooksExampleApplication {
                 .build();
     }
 
-    @PostMapping("user-reg")
+    @PostMapping("/user-reg")
     public HookResponse userReg(@RequestBody String request) throws IOException {
 
         return Hooks.builder()
