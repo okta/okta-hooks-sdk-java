@@ -20,7 +20,7 @@
     <parent>
         <groupId>com.okta</groupId>
         <artifactId>okta-parent</artifactId>
-        <version>14</version>
+        <version>15</version>
     </parent>
 
     <groupId>com.okta.hooks.sdk</groupId>
@@ -28,7 +28,7 @@
     <version>0.1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>Okta Hooks SDK</name>
+    <name>Okta Hooks SDK Parent</name>
     <description>Helper SDK to more easily respond to Okta's Hooks</description>
     <url>https://github.com/okta/okta-extensibility-sdk-java</url>
     <inceptionYear>2018</inceptionYear>
