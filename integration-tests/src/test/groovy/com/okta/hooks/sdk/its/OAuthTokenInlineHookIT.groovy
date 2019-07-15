@@ -83,7 +83,7 @@ class OAuthTokenInlineHookIT extends ITSupport {
         def user = randomUser()
 
         // login
-        login(user.getProfile().getLogin(), "Password1", 403)
+        login(user.getProfile().getLogin(), "Password1", 400)
 
         // validate hook was called
         assertThat applicationContext.getBean(RequestLog).size(), greaterThan(initialCount)
