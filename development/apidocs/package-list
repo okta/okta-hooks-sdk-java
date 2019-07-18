@@ -1,0 +1,5 @@
+com.okta.hooks.examples.spring
+com.okta.hooks.sdk
+com.okta.hooks.sdk.commands
+com.okta.hooks.sdk.its.app
+com.okta.hooks.sdk.jackson
