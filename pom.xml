@@ -35,7 +35,7 @@
 
     <properties>
         <github.slug>okta/okta-hooks-sdk-java</github.slug>
-        <jackson.version>2.9.9.1</jackson.version>
+        <jackson.version>2.9.9.3</jackson.version>
         <spring-boot.version>2.1.6.RELEASE</spring-boot.version>
     </properties>
 
