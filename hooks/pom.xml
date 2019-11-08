@@ -31,13 +31,13 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.4</version>
+            <version>1.18.10</version>
             <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>com.google.auto.service</groupId>
             <artifactId>auto-service</artifactId>
-            <version>1.0-rc5</version>
+            <version>1.0-rc6</version>
             <optional>true</optional>
         </dependency>
         <dependency>
