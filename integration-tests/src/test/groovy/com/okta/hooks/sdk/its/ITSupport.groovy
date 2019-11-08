@@ -137,7 +137,7 @@ class ITSupport {
         client.start()
 
         // the user doesn't matter but it is a required arg
-        sshSession = client.connect("test-user", "serveo.net", 22).verify().getSession()
+        sshSession = client.connect("test-user", "ssh.localhost.run", 22).verify().getSession()
 
         sshSession.auth().verify(5L, TimeUnit.SECONDS)
 
@@ -148,9 +148,6 @@ class ITSupport {
         channel.open().verify(7L, TimeUnit.SECONDS)
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(pipeIn))
-
-        String introLine = reader.readLine()
-        assertThat "Expected Intro line to start with 'Press g', this could mean that something changed with serveo.net. Start an application on port 8080, and try running the command `ssh -R 80:localhost:8080 serveo.net`", introLine, startsWith("Press g")
 
         def local = new SshdSocketAddress("localhost", getHooksAppPort())
         def remote = new SshdSocketAddress("localhost",80)
