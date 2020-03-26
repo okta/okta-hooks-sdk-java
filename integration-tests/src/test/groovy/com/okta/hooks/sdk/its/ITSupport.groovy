@@ -24,6 +24,7 @@ import com.okta.sdk.resource.application.Application
 import com.okta.sdk.resource.group.rule.GroupRule
 import com.okta.sdk.resource.user.User
 import com.okta.sdk.resource.user.UserBuilder
+import org.apache.commons.lang3.RandomStringUtils
 import org.apache.sshd.client.SshClient
 import org.apache.sshd.client.channel.ClientChannel
 import org.apache.sshd.client.keyverifier.AcceptAllServerKeyVerifier
@@ -137,7 +138,8 @@ class ITSupport {
         client.start()
 
         // the user doesn't matter but it is a required arg
-        sshSession = client.connect("test-user", "ssh.localhost.run", 22).verify().getSession()
+        String usename = RandomStringUtils.random(10, true, true)
+        sshSession = client.connect(usename, "ssh.localhost.run", 22).verify().getSession()
 
         sshSession.auth().verify(5L, TimeUnit.SECONDS)
 
