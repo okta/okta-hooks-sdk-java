@@ -24,6 +24,7 @@ import com.okta.sdk.resource.application.Application
 import com.okta.sdk.resource.group.rule.GroupRule
 import com.okta.sdk.resource.user.User
 import com.okta.sdk.resource.user.UserBuilder
+import groovy.json.JsonSlurper
 import org.apache.commons.lang3.RandomStringUtils
 import org.apache.sshd.client.SshClient
 import org.apache.sshd.client.channel.ClientChannel
@@ -157,9 +158,12 @@ class ITSupport {
         sshSession.startRemotePortForwarding(remote, local)
 
         // get the random-ish URL from the log
-        String forwardLogLine = reader.readLine()
-        assertThat "Expected to find URL in SSH log line", forwardLogLine, containsString("https://")
-        remoteTestUrl = forwardLogLine.substring(forwardLogLine.indexOf("https://"))
+        reader.readLine()
+        def line2 = reader.readLine()
+        assertThat "Expected to find domain in second SSH log line", line2, containsString('"domain"')
+
+        def localhostRunData = new JsonSlurper().parseText(line2)
+        remoteTestUrl = "https://" + localhostRunData.domain
 
         // re-target output to System.out
         channel.setOut(System.out)

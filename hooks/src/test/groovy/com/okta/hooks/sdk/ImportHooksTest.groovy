@@ -22,6 +22,8 @@ import static com.okta.hooks.sdk.commands.UserImportCommand.linkUser
 import static org.hamcrest.MatcherAssert.assertThat
 import static org.hamcrest.Matchers.is
 import static com.okta.hooks.sdk.commands.UserImportCommand.addProfileProperties
+import static com.okta.hooks.sdk.commands.PasswordImportCommand.unverified
+import static com.okta.hooks.sdk.commands.PasswordImportCommand.verified
 
 class ImportHooksTest implements HooksSupport {
 
@@ -83,6 +85,42 @@ class ImportHooksTest implements HooksSupport {
             "type": "com.okta.user.update",
             "value": {
               "id": "00garwpuyxHaWOkdV0g4"
+            }
+          }]
+        }
+        """
+
+        assertThat builder.toString(), is(expectedToString)
+    }
+
+    @Test
+    void passwordImportVerifiedTest() {
+        def builder = Hooks.builder()
+            .passwordImport(verified())
+
+        def expectedToString = expected """
+        { "commands": [{
+            "type": "com.okta.action.update",
+            "value":{
+              "credential": "VERIFIED"
+            }
+          }]
+        }
+        """
+
+        assertThat builder.toString(), is(expectedToString)
+    }
+
+    @Test
+    void passwordImportUnverifiedTest() {
+        def builder = Hooks.builder()
+            .passwordImport(unverified())
+
+        def expectedToString = expected """
+        { "commands": [{
+            "type": "com.okta.action.update",
+            "value":{
+              "credential": "UNVERIFIED"
             }
           }]
         }

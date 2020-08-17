@@ -35,7 +35,7 @@
 
     <properties>
         <github.slug>okta/okta-hooks-sdk-java</github.slug>
-        <spring-boot.version>2.2.6.RELEASE</spring-boot.version>
+        <spring-boot.version>2.3.3.RELEASE</spring-boot.version>
     </properties>
 
     <modules>
@@ -50,7 +50,7 @@
             <dependency>
                 <groupId>com.fasterxml.jackson</groupId>
                 <artifactId>jackson-bom</artifactId>
-                <version>2.10.0</version>
+                <version>2.11.2</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
