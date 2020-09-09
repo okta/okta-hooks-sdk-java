@@ -28,7 +28,7 @@
     <name>Okta Hooks :: Integration Tests</name>
 
     <properties>
-        <okta-sdk.version>1.5.2</okta-sdk.version>
+        <okta-sdk.version>1.6.0</okta-sdk.version>
     </properties>
 
     <dependencyManagement>
