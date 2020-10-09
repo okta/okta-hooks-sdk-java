@@ -41,7 +41,6 @@
     <modules>
         <module>hooks</module>
         <module>examples/spring-boot</module>
-        <module>integration-tests</module>
         <module>coverage</module>
     </modules>
 
