@@ -18,6 +18,8 @@ package com.okta.hooks.sdk
 import org.testng.annotations.Test
 
 import static com.okta.hooks.sdk.commands.OAuth2Command.addAccessTokenClaims
+import static com.okta.hooks.sdk.commands.OAuth2Command.addAccessTokenClaim
+import static com.okta.hooks.sdk.commands.OAuth2Command.addIdTokenClaim
 import static com.okta.hooks.sdk.commands.OAuth2Command.addIdTokenClaims
 import static org.hamcrest.MatcherAssert.assertThat
 import static org.hamcrest.Matchers.is
@@ -39,6 +41,39 @@ class TokenHooksTest implements HooksSupport {
 
         def expectedToString = expected "{}"
         assertThat Hooks.builder().toString(), is(expectedToString)
+    }
+
+    @Test
+    void addClaim() {
+
+        def builder = Hooks.builder()
+            .oauth2(
+                addAccessTokenClaim("access1", "value1"),
+                addIdTokenClaim("id1", "value1")
+            )
+
+        def expectedToString = expected """
+        {"commands": [
+            { "type": "com.okta.access.patch",
+              "value": [
+                { "op": "add",
+                  "path": "/claims/access1",
+                  "value": "value1"
+                }
+              ]
+            },
+            { "type": "com.okta.identity.patch",
+              "value": [
+                { "op": "add",
+                  "path": "/claims/id1",
+                  "value": "value1"
+                }
+              ]
+            }
+          ]
+        }
+        """
+        assertThat builder.toString(), is(expectedToString)
     }
 
     @Test
