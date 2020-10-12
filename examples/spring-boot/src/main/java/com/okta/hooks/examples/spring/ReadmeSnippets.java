@@ -24,6 +24,11 @@ import java.util.Collections;
 
 import static com.okta.hooks.sdk.commands.OAuth2Command.addAccessTokenClaim;
 import static com.okta.hooks.sdk.commands.OAuth2Command.addIdTokenClaim;
+import static com.okta.hooks.sdk.commands.OAuth2Command.replaceAccessTokenClaim;
+import static com.okta.hooks.sdk.commands.OAuth2Command.setAccessTokenExpiration;
+import static com.okta.hooks.sdk.commands.OAuth2Command.setIdTokenExpiration;
+import static com.okta.hooks.sdk.commands.PasswordImportCommand.unverified;
+import static com.okta.hooks.sdk.commands.PasswordImportCommand.verified;
 import static com.okta.hooks.sdk.commands.SamlAssertionCommand.add;
 import static com.okta.hooks.sdk.commands.SamlAssertionCommand.replace;
 import static com.okta.hooks.sdk.commands.UserImportCommand.createUser;
@@ -114,6 +119,36 @@ final class ReadmeSnippets {
     private void samlReplaceAssertion() {
         Hooks.builder()
             .samlAssertion(replace("/claims/array/attributeValues/1/value", "replacementValue"))
+            .build();
+    }
+
+    private void passwordImportVerified() {
+        Hooks.builder()
+            .passwordImport(verified())
+            .build();
+    }
+
+    private void passwordImportUnverified() {
+        Hooks.builder()
+            .passwordImport(unverified())
+            .build();
+    }
+
+    private void accessTokenExpiration() {
+        Hooks.builder()
+            .oauth2(setAccessTokenExpiration(3600))
+            .build();
+    }
+
+    private void idTokenExpiration() {
+        Hooks.builder()
+            .oauth2(setIdTokenExpiration(3600))
+            .build();
+    }
+
+    private void replaceClaim() {
+        Hooks.builder()
+            .oauth2(replaceAccessTokenClaim("a-claim-name", "a-new-value"))
             .build();
     }
 

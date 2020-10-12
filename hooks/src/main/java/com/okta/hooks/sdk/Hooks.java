@@ -20,6 +20,7 @@ import com.okta.hooks.sdk.commands.HookError;
 import com.okta.hooks.sdk.commands.HookErrorCause;
 import com.okta.hooks.sdk.commands.HookResponse;
 import com.okta.hooks.sdk.commands.OAuth2Command;
+import com.okta.hooks.sdk.commands.PasswordImportCommand;
 import com.okta.hooks.sdk.commands.SamlAssertionCommand;
 import com.okta.hooks.sdk.commands.UserImportCommand;
 import com.okta.hooks.sdk.commands.UserRegistrationCommand;
@@ -58,6 +59,8 @@ public class Hooks {
         Builder userRegistration(UserRegistrationCommand... commands);
 
         Builder userImport(UserImportCommand... commands);
+
+        Builder passwordImport(PasswordImportCommand... commands);
 
         Builder samlAssertion(SamlAssertionCommand... commands);
 
@@ -104,6 +107,11 @@ public class Hooks {
 
         @Override
         public Builder userImport(UserImportCommand... commands) {
+            return addCommands(commands);
+        }
+
+        @Override
+        public Builder passwordImport(PasswordImportCommand... commands) {
             return addCommands(commands);
         }
 
