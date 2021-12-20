@@ -38,7 +38,7 @@ class TokenHooksTest implements HooksSupport {
         def builder = Hooks.builder()
             .error("test-error")
 
-        def expectedToString = expected"""{"error": {"errorSummary": "test-error"}}"""
+        def expectedToString = expected"""{"error": { "errorSummary": "test-error"}}"""
         assertThat builder.toString(), is(expectedToString)
     }
 

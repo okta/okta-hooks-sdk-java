@@ -32,7 +32,7 @@ class UserRegHooksTest implements HooksSupport {
         def builder = Hooks.builder()
             .errorCause("test-error")
 
-        def expectedToString = expected"""{"error": {"errorCauses": [{ "errorSummary": "test-error" }]}}"""
+        def expectedToString = expected"""{"error": { "errorSummary": "test-error", "errorCauses": [{ "errorSummary": "test-error" }]}}"""
         assertThat builder.toString(), is(expectedToString)
     }
 
@@ -43,7 +43,7 @@ class UserRegHooksTest implements HooksSupport {
             .errorCause("test-error")
             .debugContext(["foo": "bar", "one": "two"])
 
-        def expectedToString = expected"""{"error": {"errorCauses": [{ "errorSummary": "test-error" }]}, "debugContext": {"foo": "bar", "one": "two"}}"""
+        def expectedToString = expected"""{"error": {"errorSummary": "test-error", "errorCauses": [{ "errorSummary": "test-error" }]}, "debugContext": {"foo": "bar", "one": "two"}}"""
         assertThat builder.toString(), is(expectedToString)
     }
 
@@ -96,7 +96,7 @@ class UserRegHooksTest implements HooksSupport {
             .errorCause("test-error1")
             .errorCause("test-error2")
 
-        def expectedToString = expected"""{"error": {"errorCauses": [{ "errorSummary": "test-error1" },{ "errorSummary": "test-error2" }]}}"""
+        def expectedToString = expected"""{"error": {"errorSummary": "test-error1", "errorCauses": [{ "errorSummary": "test-error1" },{ "errorSummary": "test-error2" }]}}"""
         assertThat builder.toString(), is(expectedToString)
     }
 
