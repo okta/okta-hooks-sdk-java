@@ -77,7 +77,7 @@ public class Hooks {
 
         @Override
         public Builder error(String message) {
-            this.error = getOrCreateError(false)
+            this.error = getOrCreateError(false, message)
                     .setErrorSummary(message);
             return this;
         }
@@ -90,7 +90,7 @@ public class Hooks {
 
         @Override
         public Builder errorCause(HookErrorCause cause) {
-            error = getOrCreateError(true);
+            error = getOrCreateError(true, cause.getErrorSummary());
             error.getErrorCauses().add(cause);
             return this;
         }
@@ -139,9 +139,9 @@ public class Hooks {
             return SERIALIZER.serialize(build());
         }
 
-        private HookError getOrCreateError(boolean initCauses) {
+        private HookError getOrCreateError(boolean initCauses, String errorSummary) {
 
-            HookError hookError = error != null ? error : new HookError();
+            HookError hookError = error != null ? error : new HookError().setErrorSummary(errorSummary);
 
             if (initCauses && hookError.getErrorCauses() == null) {
                 hookError.setErrorCauses(new ArrayList<>());
