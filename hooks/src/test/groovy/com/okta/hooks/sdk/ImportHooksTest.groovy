@@ -15,9 +15,7 @@
  */
 package com.okta.hooks.sdk
 
-import org.json.JSONException
 import org.testng.annotations.Test
-import org.skyscreamer.jsonassert.JSONAssert
 
 import static com.okta.hooks.sdk.commands.UserImportCommand.createUser
 import static com.okta.hooks.sdk.commands.UserImportCommand.linkUser
@@ -29,14 +27,6 @@ import static com.okta.hooks.sdk.commands.PasswordImportCommand.verified
 
 
 class ImportHooksTest implements HooksSupport {
-
-    void assertJsonEqualsNonStrict(def actual, def expected) {
-        try {
-            JSONAssert.assertEquals(expected, actual, false);
-        } catch (JSONException jse) {
-            throw new IllegalArgumentException(jse.getMessage());
-        }
-    }
 
     @Test
     void updateUserProfile() {

@@ -15,7 +15,20 @@
  */
 package com.okta.hooks.sdk
 
+import org.json.JSONException
+import org.testng.annotations.Test
+import org.skyscreamer.jsonassert.JSONAssert
+
 trait HooksSupport {
+
+    void assertJsonEqualsNonStrict(def actual, def expected) {
+        try {
+            JSONAssert.assertEquals(expected, actual, false);
+        } catch (JSONException jse) {
+            throw new IllegalArgumentException(jse.getMessage());
+        }
+    }
+
 
     String expected(String jsonString) {
         return jsonString.replaceAll("\\s+(?=([^\"]*\"[^\"]*\")*[^\"]*\$)", "")
