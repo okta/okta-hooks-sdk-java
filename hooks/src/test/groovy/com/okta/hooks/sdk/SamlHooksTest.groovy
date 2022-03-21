@@ -43,7 +43,7 @@ class SamlHooksTest implements HooksSupport {
         }
         """
 
-        assertThat builder.toString(), is(expectedToString)
+        assertJsonEqualsNonStrict builder.toString(), expectedToString
     }
 
     @Test
@@ -66,7 +66,7 @@ class SamlHooksTest implements HooksSupport {
         }
         """
 
-        assertThat builder.toString(), is(expectedToString)
+        assertJsonEqualsNonStrict builder.toString(), expectedToString
     }
 
     @Test
@@ -105,7 +105,7 @@ class SamlHooksTest implements HooksSupport {
         }
         """
 
-        assertThat builder.toString(), is(expectedToString)
+        assertJsonEqualsNonStrict builder.toString(), expectedToString
     }
 
     @Test
@@ -172,6 +172,6 @@ class SamlHooksTest implements HooksSupport {
         }
         """
 
-        assertThat builder.toString(), is(expectedToString)
+        assertJsonEqualsNonStrict builder.toString(), expectedToString
     }
 }

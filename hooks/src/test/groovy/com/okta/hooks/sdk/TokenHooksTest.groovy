@@ -79,7 +79,7 @@ class TokenHooksTest implements HooksSupport {
           ]
         }
         """
-        assertThat builder.toString(), is(expectedToString)
+        assertJsonEqualsNonStrict builder.toString(), expectedToString
     }
 
     @Test
@@ -142,7 +142,7 @@ class TokenHooksTest implements HooksSupport {
           ]
         }
         """
-        assertThat builder.toString(), is(expectedToString)
+        assertJsonEqualsNonStrict builder.toString(), expectedToString
     }
 
     @Test
@@ -184,7 +184,7 @@ class TokenHooksTest implements HooksSupport {
           ]
         }
         """
-        assertThat builder.toString(), is(expectedToString)
+        assertJsonEqualsNonStrict builder.toString(), expectedToString
     }
 
     @Test
@@ -247,7 +247,7 @@ class TokenHooksTest implements HooksSupport {
           ]
         }
         """
-        assertThat builder.toString(), is(expectedToString)
+        assertJsonEqualsNonStrict builder.toString(), expectedToString
     }
 
     @Test
@@ -279,6 +279,6 @@ class TokenHooksTest implements HooksSupport {
           ]
         }
         """
-        assertThat builder.toString(), is(expectedToString)
+        assertJsonEqualsNonStrict builder.toString(), expectedToString
     }
 }

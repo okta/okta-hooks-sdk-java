@@ -44,7 +44,7 @@ class UserRegHooksTest implements HooksSupport {
             .debugContext(["foo": "bar", "one": "two"])
 
         def expectedToString = expected"""{"error": {"errorCauses": [{ "errorSummary": "test-error" }]}, "debugContext": {"foo": "bar", "one": "two"}}"""
-        assertThat builder.toString(), is(expectedToString)
+        assertJsonEqualsNonStrict builder.toString(), expectedToString
     }
 
     @Test
@@ -86,7 +86,7 @@ class UserRegHooksTest implements HooksSupport {
            }
         }
         """
-        assertThat builder.toString(), is(expectedToString)
+        assertJsonEqualsNonStrict builder.toString(), expectedToString
     }
 
     @Test
@@ -97,7 +97,7 @@ class UserRegHooksTest implements HooksSupport {
             .errorCause("test-error2")
 
         def expectedToString = expected"""{"error": {"errorCauses": [{ "errorSummary": "test-error1" },{ "errorSummary": "test-error2" }]}}"""
-        assertThat builder.toString(), is(expectedToString)
+        assertJsonEqualsNonStrict builder.toString(), expectedToString
     }
 
     @Test
@@ -117,7 +117,7 @@ class UserRegHooksTest implements HooksSupport {
         }
         """
 
-        assertThat builder.toString(), is(expectedToString)
+        assertJsonEqualsNonStrict builder.toString(), expectedToString
     }
 
     @Test
@@ -137,7 +137,7 @@ class UserRegHooksTest implements HooksSupport {
         }
         """
 
-        assertThat builder.toString(), is(expectedToString)
+        assertJsonEqualsNonStrict builder.toString(), expectedToString
     }
 
     @Test
@@ -163,6 +163,6 @@ class UserRegHooksTest implements HooksSupport {
         }
         """
 
-        assertThat builder.toString(), is(expectedToString)
+        assertJsonEqualsNonStrict builder.toString(), expectedToString
     }
 }
