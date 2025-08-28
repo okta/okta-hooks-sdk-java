@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   general-platform-helpers: okta/general-platform-helpers@1.9
+  platform-helpers: okta/platform-helpers@1
   python: circleci/python@2.1.1
   aws-cli: circleci/aws-cli@5.1
 
@@ -71,6 +72,17 @@ jobs:
               --commit $CIRCLE_SHA1 \
               --build-env "circleci" \
               --suppress_output     
+  snyk-scan:
+    docker:
+      - image: cimg/openjdk:17.0.6
+    steps:
+      - checkout
+      - run: ./mvnw clean install -Pci -Dlicense.skip=true -Dmaven.test.skip.exec=true
+      - general-platform-helpers/step-run-snyk-monitor:
+          scan-all-projects: true
+          skip-unresolved: false
+          run-on-non-main: true
+          additional-arguments: "--maven-aggregate-project"
           
 workflows:
   build_and_test:
@@ -82,6 +94,18 @@ workflows:
     jobs:
       - general-platform-helpers/job-semgrep-scan:
           name: "Scan with Semgrep"
+          context:
+            - static-analysis
+      - snyk-scan:
+          name: execute-snyk
+          requires:
+            - jdk17
+          filters:
+            branches:
+              only:
+                - master
+                - main
+                - OKTA-802791
           context:
             - static-analysis
 
