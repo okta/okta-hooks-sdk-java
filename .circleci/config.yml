@@ -93,7 +93,7 @@ workflows:
   semgrep:
     jobs:
       - jdk11
-      - general-platform-helpers/job-semgrep-scan:
+      - platform-helpers/job-semgrep-scan:
           name: "Scan with Semgrep"
           context:
             - static-analysis
