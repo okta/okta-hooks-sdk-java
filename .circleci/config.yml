@@ -92,6 +92,7 @@ workflows:
   # See OKTA-634460
   semgrep:
     jobs:
+      - jdk11
       - general-platform-helpers/job-semgrep-scan:
           name: "Scan with Semgrep"
           context:
