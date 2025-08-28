@@ -99,7 +99,7 @@ workflows:
       - snyk-scan:
           name: execute-snyk
           requires:
-            - jdk17
+            - jdk11
           filters:
             branches:
               only:
