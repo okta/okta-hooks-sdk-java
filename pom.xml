@@ -35,7 +35,7 @@
 
     <properties>
         <github.slug>okta/okta-hooks-sdk-java</github.slug>
-        <spring-boot.version>2.7.12</spring-boot.version>
+        <spring-boot.version>3.5.6</spring-boot.version>
     </properties>
 
     <modules>
@@ -86,6 +86,12 @@
                 <artifactId>slf4j-simple</artifactId>
                 <version>${slf4j.version}</version>
                 <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>1.5.18</version>
+                <scope>compile</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
